@@ -1,5 +1,3 @@
-#include <stdlib.h>
-#include <stdio.h>
 #include "binary_trees.h"
 
 /**
@@ -9,6 +7,7 @@
  *
  * Return: pointer to a binary tree
  */
+
 binary_tree_t *binary_tree_insert_right(binary_tree_t *parent, int value)
 {
 	if (parent == NULL)
@@ -28,4 +27,3 @@ binary_tree_t *binary_tree_insert_right(binary_tree_t *parent, int value)
 	parent->right = new;
 	return (new);
 }
-
