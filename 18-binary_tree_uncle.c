@@ -1,27 +1,23 @@
 #include "binary_trees.h"
-
 /**
- * binary_tree_uncle - find the uncle of a tree node
- * @node: pointer to the node
- *
- * Return: pointer to the uncle node
+ *binary_tree_uncle - function that finds the uncle node or the node that
+ *shares the same sibling as the parent node.
+ *@node: The node to be evaluated
+ *Return: The uncle node or NULL
  */
 binary_tree_t *binary_tree_uncle(binary_tree_t *node)
 {
-	binary_tree_t *parent = node->parent;
-	binary_tree_t *grand_parent = node->parent->parent;
-
-	if (node == NULL || parent == NULL)
+	if (node == NULL)
 		return (NULL);
-
-	if (grand_parent == NULL)
+	if (node->parent == NULL)
 		return (NULL);
-
-	if (grand_parent->left == NULL || grand_parent->right == NULL)
+	if (node->parent->parent == NULL)
 		return (NULL);
-
-	if (grand_parent->left == parent)
-		return (grand_parent->right);
-	else
-		return (grand_parent->left);
+	if (node->parent->parent->right != NULL &&
+	    node->parent->parent->right != node->parent)
+		return (node->parent->parent->right);
+	else if (node->parent->parent->left != NULL &&
+		 node->parent->parent->left != node->parent)
+		return (node->parent->parent->left);
+	return (NULL);
 }
